@@ -37,3 +37,8 @@ Citizen.CreateThread(function()
 		elseif(forcNightVision == "1") then
 			SetNightvision(1)
 		end
+		if(foceUnlimitedAmmo == "2") then
+			SetPedInfiniteAmmoClip(GetPlayerPed(-1), 1)
+		elseif(forceUnlimitedAmmo == "1") then
+			SetPedInfiniteAmmoClip(GetPlayerPed(-1), 0)
+		end
