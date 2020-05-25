@@ -72,3 +72,15 @@ Citizen.CreateThread(function()
 		if(deleteWeapons) then
 			RemoveAllPedWeapons(GetPlayerPed(-1), 1)
 		end
+
+		if(forceCanDamage == "2") then
+			SetEntityCanBeDamaged(GetPlayerPed(-1), 1)
+		elseif(forceCanDamage =="1") then
+			SetEntityCanBeDamaged(GetPlayerPed(-1), 0)
+		end
+
+			if(checkInvisible) then
+			if(not IsEntityVisible(GetPlayerPed(-1))) then
+				TriggerServerEvent("fluidanticheatkick", "onzichtbaar")
+			end
+		end
