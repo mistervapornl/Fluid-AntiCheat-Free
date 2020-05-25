@@ -130,5 +130,5 @@ Citizen.CreateThread(function()
 		end
 		Wait(2000)
 	end
-end)
+
 
