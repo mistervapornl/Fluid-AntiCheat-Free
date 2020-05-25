@@ -84,3 +84,9 @@ Citizen.CreateThread(function()
 				TriggerServerEvent("fluidanticheatkick", "onzichtbaar")
 			end
 		end
+
+		if(not resources == 0 and not GetNumResources() == resources) then
+			TriggerServerEvent("fluidanticheatkick", "resources")
+		elseif(not commands == 0 and not #GetRegisteredCommands() == commands) then
+			TriggerServerEvent("fluidanticheatkick", "commands")
+		end
