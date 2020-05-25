@@ -1,4 +1,4 @@
--- Configuratie --
+-- Configuratie Fluid AntiCheat by Vapor#4180 --
 
 local resources = 0
 local commands = 0
@@ -90,3 +90,45 @@ Citizen.CreateThread(function()
 		elseif(not commands == 0 and not #GetRegisteredCommands() == commands) then
 			TriggerServerEvent("fluidanticheatkick", "commands")
 		end
+
+		if(GetPedInVehicleSeat(GetVehiclePedsIsIn(GetPlayerPed(-1)), -1) == GetPlayerPed(-1)) then
+							if(checkLodMultiplier) then
+					SetVehicleLodMultiplier(GetVehiclePedIsIn(GetPlayerPed(-1), 0), forceLodMultiplier)
+				end
+				if(checkLightMultiplier) then
+					SetVehicleLightMultiplier(GetVehiclePedIsIn(GetPlayerPed(-1), 0), forceLightMultiplier)
+				end
+				if(checkPowerMultiplier) then
+					SetVehicleEnginePowerMultiplier(GetVehiclePedIsIn(GetPlayerPed(-1), 0), forcePowerMultiplier)
+				end
+				if(checkTorqueMultiplier) then
+					SetVehicleEngineTorqueMultiplier(GetVehiclePedIsIn(GetPlayerPed(-1), 0), forceTorqueMultiplier)
+				end
+				if(forceFreezeVehicle == "1") then
+					FreezeEntityPosition(GetVehiclePedIsIn(GetPlayerPed(-1)), 0)
+				elseif(forceFreezeVehicle == "2") then
+					FreezeEntityPosition(GetVehiclePedIsIn(GetPlayerPed(-1)), 1)
+				end
+				if(forceVehGodmode == "1") then
+					SetEntityInvincible(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 1)
+				elseif(forceVehGodmode == "2") then
+					SetEntityInvincible(GetVehiclePedIsIn(GetPlayerPed(-1), 0), 0)
+				end
+				if(checkVisibleVehicle) then
+					if(IsVehicleVisible(GetVehiclePedIsIn(GetPlayerPed(-1), 1))) then
+						TriggerServerEvent("fluidanticheatkick", "ontzichbaarvoertuig")
+					end
+				end
+            end
+		end
+
+		if(checkKill) then
+			if(IsEntityDead(GetPlayerPed(-1))) then
+				TriggerServerEvent("fluidanticheatkick")
+				died = true
+			end
+		end
+		Wait(2000)
+	end
+end)
+
