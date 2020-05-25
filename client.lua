@@ -18,7 +18,7 @@ if(#forbiddenKeys > 0) then
 			Wait(100)
 			for ke in pairs(forbiddenKeys) do
 				if(IsControlPressed(0, forbiddenKeys[ke])) then
-					TriggerServerEvent("fluidanticheatkick", "keykick")
+					TriggerServerEvent("fluidanticheatkick", "verbodenkeys")
 				end
 			end
 		end
@@ -52,4 +52,23 @@ Citizen.CreateThread(function()
 				TriggerServerEvent("fluidanticheatkick", "godmode")
 			end
 			SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(-1)) + 2)
+		end
+
+		if(forceGodmode == "1") then
+			SetEntityInvincible(GetPlayerPed(-1), 1)
+		elseif(forceGodmode =="2") then
+			SetEntityInvincible(GetPlayerPed(-1), 0)
+		end
+
+		if(CheckRegenMiltiplier) then
+			SetPlayerHealthRechargeMultiplier(PlayereId() forceRegenMultiplier)
+		end
+
+		if(forceMaxHealth > 0) then
+			SetEntityMaxHealth(GetPlayerPed(-1), forceMaxHealth)
+		end
+
+
+		if(deleteWeapons) then
+			RemoveAllPedWeapons(GetPlayerPed(-1), 1)
 		end
