@@ -28,4 +28,12 @@ end
 Citizen.CreateThread(function()
 	while true do
 		local playercoord = GetEntityCoords(GetPlayerPed(-1))
-		if(checkDamageMultiplier)
+		if(checkDamageMultiplier) then
+			SetPlayerWeaponDamageModifier(PlayereId(), forceDamageMiltiplier)
+		end
+
+		if(forceNightVision =="2") then
+			SetNightvision(0)
+		elseif(forcNightVision == "1") then
+			SetNightvision(1)
+		end
