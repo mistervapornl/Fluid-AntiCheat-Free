@@ -1,4 +1,4 @@
---- FluidAntiCheat By Vapor: Server Configuration ---
+--- FluidAntiCheat By !Vapor#4180: Server Configuration ---
 
 --- Fake Events (set to "" to disable) ----
 local eventname1 = "chocohax:anticheat"
