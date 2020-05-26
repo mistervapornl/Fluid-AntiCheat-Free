@@ -151,3 +151,46 @@ AddEventHandler("fluidanticheatkick", function(reson)
 	end
 end)
 
+--- Fake TriggerEvents ---
+
+RegisterServerEvent("deadcheat")
+AddEventHandler("deadcheat", function()
+	table.insert(deadplayers, source)
+end)
+
+if(not eventname1 == "") then
+	RegisterServerEvent(eventname)
+	AddEventHandler(eventname, function()
+		print()
+		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		for id in pairs(GetPlayerIdentifiers(source)) do
+			print(GetPlayerIdentifiers(source)[id])
+		end
+		print()		
+		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+	end)
+end
+if(not eventname2 == "") then
+	RegisterServerEvent(eventname)
+	AddEventHandler(eventname, function()
+		print()
+		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		for id in pairs(GetPlayerIdentifiers(source)) do
+			print(GetPlayerIdentifiers(source)[id])
+		end
+		print()		
+		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+	end)
+end
+if(not eventname3 == "") then
+	RegisterServerEvent(eventname)
+	AddEventHandler(eventname, function()
+		print()
+		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		for id in pairs(GetPlayerIdentifiers(source)) do
+			print(GetPlayerIdentifiers(source)[id])
+		end
+		print()		
+		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+	end)
+end
