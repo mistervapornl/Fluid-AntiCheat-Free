@@ -17,7 +17,26 @@ if(checkChatMessage) then
 	RegisterServerEvent("_chat:messageEntered")
 	RegisterServerEvent("chat:addMessage")
 	AddEventHandler('_chat:messageEntered', function(author, color, message)
-		if(GetplayerName(source)) then
-			if(GetPlayerName(source)):find(author)) then 
-	
+		if(GetPlayerName(source)) then
+			if(GetPlayerName(source):find(author)) then
+				CancelEvent()
+				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
+					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Heeft permissies om dit uittevoeren.")
+				else
+					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " is verbannen.")
+					if(not webhookurl == "") then
+						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
+					end
+					if(reson == "resources") then
+						print()
+						print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, omdat hij een nep bericht heeft geplaatst. Identifiers:")
+						for id in pairs(GetPlayerIdentifiers(source)) do
+							print(GetPlayerIdentifiers(source)[id])
+						end
+						print()		
+						DropPlayer(source, "FluidAntiCheat: Dit bericht is niet normaal!")
+					end
+				end
+			end
+		end
 	end)
