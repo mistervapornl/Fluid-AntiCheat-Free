@@ -122,7 +122,7 @@ AddEventHandler("fluidanticheatkick", function(reson)
 			DropPlayer(source, "FluidAntiCheat: Your vehicle is invisible!")
 		elseif(reson == "tp") then
 			print()
-			DropPlayer(source, "FluidAntiCheat: Server events has been changeds!")
+			DropPlayer(source, "FluidAntiCheat: Server events has been changed!")
 		elseif(reson == "handling") then
 			print()
 			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing vehicle handling. Identifiers:")
