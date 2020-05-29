@@ -21,20 +21,20 @@ if(checkChatMessage) then
 			if(GetPlayerName(source):find(author)) then
 				CancelEvent()
 				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Heeft permissies om dit uittevoeren.")
+					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has permissions to use.")
 				else
-					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " is verbannen.")
+					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 					if(not webhookurl == "") then
-						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
+						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
 					end
 					if(reson == "resources") then
 						print()
-						print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, omdat hij een nep bericht heeft geplaatst. Identifiers:")
+						print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for a fake message. Identifiers:")
 						for id in pairs(GetPlayerIdentifiers(source)) do
 							print(GetPlayerIdentifiers(source)[id])
 						end
 						print()		
-						DropPlayer(source, "FluidAntiCheat: Dit bericht is niet normaal!")
+						DropPlayer(source, "FluidAntiCheat: Unusual message!")
 					end
 				end
 			end
@@ -46,20 +46,20 @@ if(checkChatMessage) then
 			if(GetPlayerName(source):find(author)) then
 				CancelEvent()
 				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "]  Heeft permissies om dit uittevoeren.")
+					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has Permissions to use.")
 				else
-					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " is verbannen.")
+					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Has been Kicked.")
 					if(not webhookurl == "") then
-						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
+						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
 					end
 					if(reson == "resources") then
 						print()
-						print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, omdat hij een nep bericht heeft geplaatst. Identifiers:")
+						print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for a fake message. Identifiers:")
 						for id in pairs(GetPlayerIdentifiers(source)) do
 							print(GetPlayerIdentifiers(source)[id])
 						end
 						print()		
-						DropPlayer(source, "FluidAntiCheat: Dit bericht is niet normaal!")
+						DropPlayer(source, "FluidAntiCheat: Unusual message!")
 					end
 				end
 			end
@@ -70,12 +70,12 @@ end
 RegisterServerEvent("fluidanticheatkick")
 AddEventHandler("fluidanticheatkick", function(reson)
 	if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-		if(not reson == "verbodenkeys") then
-			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Heeft permissies om dit uittevoeren.")
+		if(not reson == "forbiddenkeys") then
+			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has permissions to use.")
 		end
 	else
 		if(GetPlayerName(source)) then
-			TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Is verbannen.")
+			TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Has been kicked.")
 		end
 		if(not webhookurl == "") then
 			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
