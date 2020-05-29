@@ -48,7 +48,7 @@ if(checkChatMessage) then
 				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
 					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "]  Heeft permissies om dit uittevoeren.")
 				else
-					TriggerClientEvent("chatMessage", -1, "AppleCheat", {180, 0, 0}, GetPlayerName(source) .. " is verbannen.")
+					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " is verbannen.")
 					if(not webhookurl == "") then
 						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
 					end
