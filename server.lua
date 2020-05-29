@@ -78,75 +78,75 @@ AddEventHandler("fluidanticheatkick", function(reson)
 			TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Has been kicked.")
 		end
 		if(not webhookurl == "") then
-			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] is verbannen."}), { ['Content-Type'] = 'application/json' })
+			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
 		end
 		if(reson == "resources") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen omdat de resources zijn veranderd. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing resources. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()		
-			DropPlayer(source, "FluidAntiCheat: Je resources zijn veranderd!")
+			DropPlayer(source, "FluidAntiCheat: Your resources has changed!")
 		elseif(reson == "commands") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen omdat commands veranderd zijn. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing commands. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: je commands zijn veranderd!")
+			DropPlayer(source, "FluidAntiCheat: Your commands has changed!")
 		elseif(reson == "godmode") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, voor het gebruik van godmode. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for godmode. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: er is godmode gedetecteerd!")
-		elseif(reson == "verbodenkeys") then
+			DropPlayer(source, "FluidAntiCheat: Godmode detected!")
+		elseif(reson == "forbiddenkeys") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen voor het gebruik van verboden toetsen. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for forbiddenkeys. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Je hebt verboden toetsen gebruikt!")
-		elseif(reson == "ontzichtbaarvoertuig") then
+			DropPlayer(source, "FluidAntiCheat: You used forbiddenkeys!")
+		elseif(reson == "invisiblevehicle") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen omdat voertuig ontzichbaar is. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked because vehicle is invisible. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Je voertuig is ontzichtbaar!!")
+			DropPlayer(source, "FluidAntiCheat: Your vehicle is invisible!")
 		elseif(reson == "tp") then
 			print()
-			DropPlayer(source, "FluidAntiCheat: server events zijn veranderd!")
+			DropPlayer(source, "FluidAntiCheat: Server events has been changeds!")
 		elseif(reson == "handling") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen omdat de handling is veranderd. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing vehicle handling. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Je handling is veranderd!")
-		elseif(reson == "visible") then
+			DropPlayer(source, "FluidAntiCheat: Your handling has been changed!")
+		elseif(reson == "invisible") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen omdat hij onzichtbaar was. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for being invisible. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: je bent ontzichtbaar!")
+			DropPlayer(source, "FluidAntiCheat: You are invisible!")
 		else
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] is verbannen. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: speler is verbannen.")
+			DropPlayer(source, "FluidAntiCheat: Player has been kicked.")
 		end
 	end
 end)
@@ -162,35 +162,35 @@ if(not eventname1 == "") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
 	end)
 end
 if(not eventname2 == "") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
 	end)
 end
 if(not eventname3 == "") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] is verbannen, verboden triggerevent gebruikt. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: verboden triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
 	end)
 end
