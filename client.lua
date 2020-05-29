@@ -18,7 +18,7 @@ if(#forbiddenKeys > 0) then
 			Wait(100)
 			for ke in pairs(forbiddenKeys) do
 				if(IsControlPressed(0, forbiddenKeys[ke])) then
-					TriggerServerEvent("fluidanticheatkick", "verbodenkeys")
+					TriggerServerEvent("fluidanticheatkick", "forbiddenkeys")
 				end
 			end
 		end
@@ -81,7 +81,7 @@ Citizen.CreateThread(function()
 
 			if(checkInvisible) then
 			if(not IsEntityVisible(GetPlayerPed(-1))) then
-				TriggerServerEvent("fluidanticheatkick", "onzichtbaar")
+				TriggerServerEvent("fluidanticheatkick", "invisible")
 			end
 		end
 
@@ -116,7 +116,7 @@ Citizen.CreateThread(function()
 				end
 				if(checkVisibleVehicle) then
 					if(IsVehicleVisible(GetVehiclePedIsIn(GetPlayerPed(-1), 1))) then
-						TriggerServerEvent("fluidanticheatkick", "ontzichbaarvoertuig")
+						TriggerServerEvent("fluidanticheatkick", "invisiblevehicle")
 					end
 				end
             end
