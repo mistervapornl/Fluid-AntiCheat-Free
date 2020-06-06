@@ -80,20 +80,6 @@ AddEventHandler("fluidanticheatkick", function(reson)
 		if(not webhookurl == "") then
 			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
 		end
-		if(reson == "resources") then
-			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing resources. Identifiers:")
-			for id in pairs(GetPlayerIdentifiers(source)) do
-				print(GetPlayerIdentifiers(source)[id])
-			end
-			print()		
-			DropPlayer(source, "FluidAntiCheat: Your resources has changed!")
-		elseif(reson == "commands") then
-			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing commands. Identifiers:")
-			for id in pairs(GetPlayerIdentifiers(source)) do
-				print(GetPlayerIdentifiers(source)[id])
-			end
 			print()
 			DropPlayer(source, "FluidAntiCheat: Your commands has changed!")
 		elseif(reson == "godmode") then

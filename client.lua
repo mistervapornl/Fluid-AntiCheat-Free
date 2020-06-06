@@ -85,11 +85,6 @@ Citizen.CreateThread(function()
 			end
 		end
 
-		if(not resources == 0 and not GetNumResources() == resources) then
-			TriggerServerEvent("fluidanticheatkick", "resources")
-		elseif(not commands == 0 and not #GetRegisteredCommands() == commands) then
-			TriggerServerEvent("fluidanticheatkick", "commands")
-		end
 
 		if(GetPedInVehicleSeat(GetVehiclePedsIsIn(GetPlayerPed(-1)), -1) == GetPlayerPed(-1)) then
 							if(checkLodMultiplier) then
