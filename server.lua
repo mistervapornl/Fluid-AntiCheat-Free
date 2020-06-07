@@ -67,15 +67,15 @@ if(checkChatMessage) then
 	end)
 end
 
-RegisterServerEvent("fluidanticheatkick")
-AddEventHandler("fluidanticheatkick", function(reson)
+RegisterServerEvent("anticheatkick")
+AddEventHandler("anticheatkick", function(reson)
 	if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-		if(not reson == "forbiddenkeys") then
-			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has permissions to use.")
+		if(not reson == "keys") then
+			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 		end
 	else
 		if(GetPlayerName(source)) then
-			TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Has been kicked.")
+			TriggerClientEvent("chatMessage", -1, "AppleCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 		end
 		if(not webhookurl == "") then
 			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
