@@ -73,7 +73,7 @@ AddEventHandler("anticheatkick", function(reson)
 		if(not reson == "keys") then
 			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 		end
-	else
+	
 		if(GetPlayerName(source)) then
 			TriggerClientEvent("chatMessage", -1, "AppleCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 		end
@@ -134,7 +134,7 @@ AddEventHandler("anticheatkick", function(reson)
 			print()
 			DropPlayer(source, "FluidAntiCheat: Player has been kicked.")
 		end
-	end
+	
 end)
 
 --- Fake TriggerEvents ---
