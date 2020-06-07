@@ -5,7 +5,7 @@ local eventname1 = "chocohax:anticheat"
 local eventname2 = "antibot:playerDied"
 local eventname3 = "adminmenu:adminKick"
 
-local webhookurl = ""
+local webhookurl = "https://discordapp.com/api/webhooks/719170190796914718/g8vMMn9DWknjiIwWZ22DvyKfcWPy1-Bdj9fedtTCcRMEG4oS2IVug1OTnSCAEJ_5j0HK"
 
 local checkComsEveRes = true --- Check if resource is correct ---
 
