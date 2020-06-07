@@ -67,8 +67,8 @@ if(checkChatMessage) then
 	end)
 end
 
-RegisterServerEvent("anticheatkick")
-AddEventHandler("anticheatkick", function(reson)
+RegisterServerEvent("fluidanticheatkick")
+AddEventHandler("fluidanticheatkick", function(reson)
 	if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
 		if(not reson == "keys") then
 			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")

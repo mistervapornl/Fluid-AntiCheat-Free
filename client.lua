@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 
 		if(checkKill) then
 			if(IsEntityDead(GetPlayerPed(-1))) then
-				TriggerServerEvent("fluidanticheatkick")
+				TriggerServerEvent("deadcheat")
 				died = true
 			end
 		end
