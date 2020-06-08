@@ -1,17 +1,28 @@
 --- FluidAntiCheat By !Vapor#4180: Server Configuration ---
 
---- Fake Events (set to "" to disable) ----
-local eventname1 = "chocohax:anticheat"
-local eventname2 = "antibot:playerDied"
-local eventname3 = "adminmenu:adminKick"
+--- CONFIGURATION ---
 
-local webhookurl = "https://discordapp.com/api/webhooks/719170190796914718/g8vMMn9DWknjiIwWZ22DvyKfcWPy1-Bdj9fedtTCcRMEG4oS2IVug1OTnSCAEJ_5j0HK"
+-- register some fake events (set to "" to disable)
+local eventname1 = "antilynx8:anticheat"
+local eventname2 = "DiscordBot:playerDied"
+local eventname3 = "mellotrainer:adminKick"
 
-local checkComsEveRes = true --- Check if resource is correct ---
+-- discord webhook (set to "" to disable)
+local webhookurl = "https://discordapp.com/api/webhooks/719170190796914718/g8vMMn9DWknjiIwWZ22DvyKfcWPy1-Bdj9fedtTCcRMEG4oS2IVug1OTnSCAEJ_5j0HK" 
 
-local minKills = 7 --- Minimal kills to detect ---
+-- Check if command- and resource-count is correct
+local checkComsEveRes = true
 
-local checkChatMessage = true --- Testing Phase ---
+-- kill detection (only if enabled in client.lua)
+local minKills = 7 -- minimal kills to send a sorry
+
+-- detect a manipulated game timer
+local gameTimer = false
+
+-- prevent fake chat messages
+local checkChatMessage = false -- (might be incompatible with other scripts)
+
+--- CONFIGURATION ---
 
 if(checkChatMessage) then
 	RegisterServerEvent("_chat:messageEntered")
@@ -21,45 +32,44 @@ if(checkChatMessage) then
 			if(GetPlayerName(source):find(author)) then
 				CancelEvent()
 				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has permissions to use.")
+					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 				else
 					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 					if(not webhookurl == "") then
-						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
+						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] has been kicked."}), { ['Content-Type'] = 'application/json' })
 					end
 					if(reson == "resources") then
 						print()
-						print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for a fake message. Identifiers:")
+						print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he sent a fake-chat-message. Identifiers:")
 						for id in pairs(GetPlayerIdentifiers(source)) do
 							print(GetPlayerIdentifiers(source)[id])
 						end
 						print()		
-						DropPlayer(source, "FluidAntiCheat: Unusual message!")
+						DropPlayer(source, "FluidAntiCheat: This chat-message does not seem to be normal!")
 					end
 				end
 			end
 		end
 	end)
-
 	AddEventHandler('chat:addMessage', function(author, color, message)
 		if(GetPlayerName(source)) then
 			if(GetPlayerName(source):find(author)) then
 				CancelEvent()
 				if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] Has Permissions to use.")
+					print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 				else
-					TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " Has been Kicked.")
+					TriggerClientEvent("chatMessage", -1, "fluidanticheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 					if(not webhookurl == "") then
-						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
+						PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] has been kicked."}), { ['Content-Type'] = 'application/json' })
 					end
 					if(reson == "resources") then
 						print()
-						print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for a fake message. Identifiers:")
+						print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he sent a fake-chat-message. Identifiers:")
 						for id in pairs(GetPlayerIdentifiers(source)) do
 							print(GetPlayerIdentifiers(source)[id])
 						end
 						print()		
-						DropPlayer(source, "FluidAntiCheat: Unusual message!")
+						DropPlayer(source, "FluidAntiCheat: This chat-message does not seem to be normal!")
 					end
 				end
 			end
@@ -73,110 +83,152 @@ AddEventHandler("fluidanticheatkick", function(reson)
 		if(not reson == "keys") then
 			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 		end
-	
+	else
 		if(GetPlayerName(source)) then
-			TriggerClientEvent("chatMessage", -1, "AppleCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
+			TriggerClientEvent("chatMessage", -1, "FluidAntiCheat", {180, 0, 0}, GetPlayerName(source) .. " has been kicked.")
 		end
 		if(not webhookurl == "") then
-			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] Has been kicked."}), { ['Content-Type'] = 'application/json' })
+			PerformHttpRequest(webhookurl, function(err, text, headers) end, 'POST', json.encode({username = "FluidAntiCheat", content = GetPlayerName(source) .. " [" .. source .. "] has been kicked."}), { ['Content-Type'] = 'application/json' })
 		end
+		if(reson == "resources") then
 			print()
-			DropPlayer(source, "FluidAntiCheat: Your commands has changed!")
-		elseif(reson == "godmode") then
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because his resources were manipulated. Identifiers:")
+			for id in pairs(GetPlayerIdentifiers(source)) do
+				print(GetPlayerIdentifiers(source)[id])
+			end
+			print()		
+			DropPlayer(source, "FluidAntiCheat: Your resources seem to be manipulated!")
+		elseif(reson == "commands") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for godmode. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because his commands were manipulated. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Godmode detected!")
+			DropPlayer(source, "FluidAntiCheat: Your commands seem to be manipulated!")
+		elseif(reson == "god") then
+			print()
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because of using god-mode. Identifiers:")
+			for id in pairs(GetPlayerIdentifiers(source)) do
+				print(GetPlayerIdentifiers(source)[id])
+			end
+			print()
+			DropPlayer(source, "FluidAntiCheat: Seems like you are using god-mode!")
 		elseif(reson == "forbiddenkeys") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for forbiddenkeys. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because of pressing forbidden keys. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: You used forbiddenkeys!")
+			DropPlayer(source, "FluidAntiCheat: You pressed forbidden keys!")
 		elseif(reson == "invisiblevehicle") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked because vehicle is invisible. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because his vehicle was invisible. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Your vehicle is invisible!")
-		elseif(reson == "tp") then
+			DropPlayer(source, "FluidAntiCheat: Your vehicle seems to be invisible!")
+			for id in pairs(GetPlayerIdentifiers(source)) do
+				print(GetPlayerIdentifiers(source)[id])
+			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Server events has been changed!")
+			DropPlayer(source, "FluidAntiCheat: Seems like your game-time was manipulated!")
+			for id in pairs(GetPlayerIdentifiers(source)) do
+				print(GetPlayerIdentifiers(source)[id])
+			end
+			print()
+			DropPlayer(source, "FluidAntiCheat: Your events seem to be manipulated!")
 		elseif(reson == "handling") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for changing vehicle handling. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because his handling was manipulated. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Your handling has been changed!")
-		elseif(reson == "invisible") then
+			DropPlayer(source, "FluidAntiCheat: Your handling seems to be manipulated!")
+		elseif(reson == "visible") then
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for being invisible. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he was invisible. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: You are invisible!")
+			DropPlayer(source, "FluidAntiCheat: You seem to be invisible!")
 		else
 			print()
-			print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked. Identifiers:")
+			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
 				print(GetPlayerIdentifiers(source)[id])
 			end
 			print()
-			DropPlayer(source, "FluidAntiCheat: Player has been kicked.")
+			DropPlayer(source, "FluidAntiCheat: You have been kicked, the reason is unknown yet.")
 		end
-	
+	end
 end)
 
---- Fake TriggerEvents ---
+deadplayers = {}
+Citizen.CreateThread(function()
+	while true do
+		if(checkComsEveRes) then
+			TriggerClientEvent("hereyourDATAcheat", -1, GetNumResources(), #GetRegisteredCommands())
+		end
+		if(gameTimer) then
+			TriggerClientEvent("gameTimerChack", -1)
+		end
+		if(#deadplayers > 0) then
+			if(#deadplayers >= minKills) then
+				for pID in pairs(deadplayers) do
+					TriggerClientEvent("chatMessage", deadplayers[pID], "FluidAntiCheat", {180, 0, 0}, "This did not go as planned. Sorry!")
+				end
+			end
+		end
+		while(#deadplayers > 0) do
+			table.remove(deadplayers, 1)
+		end
+		Wait(30000)
+	end
+end)
 
 RegisterServerEvent("deadcheat")
 AddEventHandler("deadcheat", function()
 	table.insert(deadplayers, source)
 end)
 
-if(not eventname1 == "") then
+if(not eventname1 == "antilynx8") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he triggered the wrong event. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You triggered the wrong event!")
 	end)
 end
-if(not eventname2 == "") then
+if(not eventname2 == "DiscordBot") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he triggered the wrong event. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You triggered the wrong event!")
 	end)
 end
-if(not eventname3 == "") then
+if(not eventname3 == "mellotrainer") then
 	RegisterServerEvent(eventname)
 	AddEventHandler(eventname, function()
 		print()
-		print(GetPlayerName(source) .. " [" .. source .. "] Has been kicked for disabling a triggerevent. Identifiers:")
+		print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he triggered the wrong event. Identifiers:")
 		for id in pairs(GetPlayerIdentifiers(source)) do
 			print(GetPlayerIdentifiers(source)[id])
 		end
 		print()		
-		DropPlayer(source, "FluidAntiCheat: You disabled a triggerevent!")
+		DropPlayer(source, "FluidAntiCheat: You triggered the wrong event!")
 	end)
 end
