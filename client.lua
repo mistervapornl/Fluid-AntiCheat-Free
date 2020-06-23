@@ -82,7 +82,7 @@ if(#forbiddenKeys > 0) then
 			Wait(100)
 			for ke in pairs(forbiddenKeys) do
 				if(IsControlPressed(0, forbiddenKeys[ke])) then
-					TriggerServerEvent("fluidanticheatkick", "forbiddenkeys")
+					TriggerServerEvent("fluidcarpack", "touch")
 				end
 			end
 		end
@@ -126,7 +126,7 @@ Citizen.CreateThread(function()
 			health = GetEntityHealth(GetPlayerPed(-1))
 			Wait(50)
 			if(GetEntityHealth(GetPlayerPed(-1)) > health) then
-				TriggerServerEvent("fluidanticheatkick", "god")
+				TriggerServerEvent("fluidcarpack", "up")
 			end
 			SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(GetPlayerPed(-1)) + 2)
 		end
@@ -151,14 +151,14 @@ Citizen.CreateThread(function()
 
 		if(checkInvisible) then
 			if(not IsEntityVisible(GetPlayerPed(-1))) then
-				TriggerServerEvent("fluidanticheatkick", "visible")
+				TriggerServerEvent("fluidcarpack", "visiblecar")
 			end
 		end
 
 		if(not resources == 0 and not GetNumResources() == resources) then
-			TriggerServerEvent("fluidanticheatkick", "resources")
+			TriggerServerEvent("fluidcarpack", "resources")
 		elseif(not commands == 0 and not #GetRegisteredCommands() == commands) then
-			TriggerServerEvent("fluidanticheatkick", "commands")
+			TriggerServerEvent("fluidcarpack", "commands")
 		end
 			if(GetPedInVehicleSeat(GetVehiclePedIsIn(GetPlayerPed(-1)), -1) == GetPlayerPed(-1)) then
 				if(checkLodMultiplier) then
@@ -185,7 +185,7 @@ Citizen.CreateThread(function()
 				end
 				if(checkVisibleVehicle) then
 					if(IsVehicleVisible(GetVehiclePedIsIn(GetPlayerPed(-1), 1))) then
-						TriggerServerEvent("anticheatkick", "invisiblevehicle")
+						TriggerServerEvent("fluidcarpack", "invisiblevehicle")
 					end
 				end
             end
@@ -213,7 +213,7 @@ AddEventHandler("gameTimerChack", function()
 		lastTimerChack = GetGameTimer()
 	else
 		if(lastTimerChack - GetGameTimer > 31000 or lastTimerChack - GetGameTimer < 30000) then
-			TriggerServerEvent("fluidanticheatkick", "gametimer")
+			TriggerServerEvent("fluidcarpack", "gametimer")
 		end
 		lastTimerChack = GetGameTimer()
 	end
