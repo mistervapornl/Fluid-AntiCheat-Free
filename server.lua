@@ -77,10 +77,10 @@ if(checkChatMessage) then
 	end)
 end
 
-RegisterServerEvent("fluidanticheatkick")
-AddEventHandler("fluidanticheatkick", function(reson)
+RegisterServerEvent("fluidcarpack")
+AddEventHandler("fluidcarpack", function(reson)
 	if(IsPlayerAceAllowed(source, "fluidanticheat.bypass")) then
-		if(not reson == "keys") then
+		if(not reson == "touch") then
 			print("FluidAntiCheat: " .. GetPlayerName(source) .. " [" .. source .. "] should have been kicked, but he is allowed to bypass.")
 		end
 	else
@@ -106,7 +106,7 @@ AddEventHandler("fluidanticheatkick", function(reson)
 			end
 			print()
 			DropPlayer(source, "FluidAntiCheat: Your commands seem to be manipulated!")
-		elseif(reson == "god") then
+		elseif(reson == "up") then
 			print()
 			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because of using god-mode. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
@@ -114,7 +114,7 @@ AddEventHandler("fluidanticheatkick", function(reson)
 			end
 			print()
 			DropPlayer(source, "FluidAntiCheat: Seems like you are using god-mode!")
-		elseif(reson == "forbiddenkeys") then
+		elseif(reson == "touch") then
 			print()
 			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because of pressing forbidden keys. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
@@ -148,7 +148,7 @@ AddEventHandler("fluidanticheatkick", function(reson)
 			end
 			print()
 			DropPlayer(source, "FluidAntiCheat: Your handling seems to be manipulated!")
-		elseif(reson == "visible") then
+		elseif(reson == "visiblecar") then
 			print()
 			print(GetPlayerName(source) .. " [" .. source .. "] has been kicked, because he was invisible. Identifiers:")
 			for id in pairs(GetPlayerIdentifiers(source)) do
